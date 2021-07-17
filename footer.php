@@ -1,7 +1,12 @@
+<hr>
 <?php
     $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);  
     if ($curPageName!="index.php") { ?>
-        <a href="index.php" class="new-btn new-btn-hipster btn-sm">< Back Home</a>
+        <div class="new-title mt-3">
+            <a href="index.php" class="new-title new-btn new-btn-hipster btn-sm">
+                <i class="bi bi-house-fill"></i>
+            </a>
+        </div>
     <?php }
 ?>
 
