@@ -17,7 +17,7 @@
 
 <!-- getting count of students under the selected branch -->
 <?php
-    $query = "SELECT COUNT(*) AS total_count FROM Student WHERE Student.branch='$id'";
+    $query = "SELECT COUNT(*) AS total_count FROM Student WHERE SUBSTRING(roll_no, 1, 6)='$id'";
     $res = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($res);
     $total_count = $row['total_count'];
@@ -27,9 +27,9 @@
 <?php   if ($total_count>0) {   ?>
     <strong>It will also delete the following students:</strong>
     <?php
-        $query = "SELECT student_id AS id, Student.name as name 
+        $query = "SELECT roll_no AS id, name 
                     FROM Student 
-                    WHERE Student.branch='$id'";
+                    WHERE SUBSTRING(roll_no, 1, 6)='$id'";
         $res = mysqli_query($conn, $query);
     ?>
     <ol>

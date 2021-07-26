@@ -11,6 +11,8 @@
 ?>
 
 </div>
+<!-- local js -->
+<script src="index.js"></script>
 </body>
 <?php $conn->close() ?>
 </html>

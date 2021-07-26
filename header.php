@@ -16,5 +16,7 @@
 </head>
 <body>
 <div class="new-container">
-<h3 class="new-title">AEC Student Information</h3>
+<h3 class="new-title">Student Information</h3>
 <div class="new-title-underline margin-bottom"></div>
+
+<?php ?>
