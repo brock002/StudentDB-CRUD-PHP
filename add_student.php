@@ -68,6 +68,7 @@
         // checking dob validation
         $temp = intval(date("Y"))-substr($dob, 0, 4);
         if ($temp<18) {
+            // needs fixing...
             echo "<script>showPopover()</script>";
         } else {
 

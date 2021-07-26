@@ -12,6 +12,8 @@
 
 - Student
 - Branch
+- Organization
+- Location
 
 <br/>
 
@@ -20,9 +22,3 @@
 #### This is in no way a very useful or a well built project. I'm only uploading it to Github for future references.
 
 ---
-
-<br/>
-
----
-
-##### Some errors still needs to fixed... README needs to be updated...

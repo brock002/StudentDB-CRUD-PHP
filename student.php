@@ -6,12 +6,20 @@
 </div>
 
 <?php
-    $query = "SELECT roll_no, Student.name AS name, Branch.name AS branch, dob, email, IFNULL(phone, 'N/A') AS phone, IFNULL(tpr, 'N/A') AS tpr
-                FROM Student JOIN Branch 
-                ON SUBSTRING(roll_no, 1, 6)=Branch.branch_id";
+    $query = "SELECT 
+                    S1.roll_no AS roll_no, 
+                    S1.name AS name, 
+                    Branch.name AS branch, 
+                    S1.dob AS dob, 
+                    S1.email AS email, 
+                    IFNULL(S1.phone, 'N/A') AS phone, 
+                    IFNULL(S2.name, 'N/A') AS tpr
+                FROM Student AS S1
+                INNER JOIN Branch ON SUBSTRING(S1.roll_no, 1, 6)=Branch.branch_id
+                LEFT JOIN Student AS S2 ON S1.tpr=S2.roll_no";
     if (isset($_GET["branch"])) {
         $branch = $_GET['branch'];
-        $query .= " AND Branch.branch_id = '$branch'";
+        $query .= " WHERE Branch.branch_id = '$branch'";
     }
     $res = mysqli_query($conn, $query);
 ?>
@@ -82,17 +90,18 @@
                     </td>
                     <td>
                         <h6>
-                            <?php echo $student['phone']; ?>
+                            <?php 
+                                if ($student['phone']=="") {
+                                    echo "N/A";
+                                } else {
+                                    echo $student['phone']; 
+                                }
+                            ?>
                         </h6>
                     </td>
                     <td>
                         <h6>
-                            <?php 
-                                $tpr = $student['tpr'];
-                                $new_query = "SELECT name FROM Student WHERE roll_no='$tpr'";
-                                $tpr = mysqli_fetch_array(mysqli_query($conn, $query))['name'];
-                                echo $tpr;
-                            ?>
+                            <?php echo $student['tpr']; ?>
                         </h6>
                     </td>
                     <td class="flexbox">
