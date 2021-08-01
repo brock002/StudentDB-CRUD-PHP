@@ -1,12 +1,14 @@
 <?php include "header.php" ?>
 
-<h4 class="new-title new-title-basic-underline">Organizations</h4>
+<!-- page header -->
+<!-- <h4 class="new-title new-title-basic-underline">Organizations</h4> -->
 
+<!-- organization table -->
 <div class="flexbox mt-3">
     <!-- showing available Organizations -->
     <div class="flex-group">
         <fieldset>
-            <legend>Available Organizations</legend>
+            <legend><u>Organizations</u></legend>
             <ul class="list-group org-list">
                 <?php 
                     $query = "SELECT org_id AS id, org_name AS name, Location.loc_name AS location 
@@ -23,29 +25,30 @@
                     } else {
                         foreach ($res as $org) {
                     ?>
-                        <li class="list-group-item flexbox">
+                        <a href="branch.php?org=<?php echo $org['id'];?>" class="list-group-item flexbox">
                             <span>
                                 <?php echo ucwords(strtolower($org['name']))."(".$org['id'].")"; ?>
                             </span>
                             <small>
                                 <?php echo ucwords(strtolower($org['location'])); ?>
                             </small>
-                        </li>
+                        </a>
                     <?php
                         }
                     }
                 ?>
             </ul>
+            <small class="bg-light bg-gradient"> <i class="bi bi-sticky"></i> Click on a organization to see departments, students listed under that organization</small>
         </fieldset>
     </div>
 
     <!-- vertical line -->
-    <div class="vl-18"></div>
+    <div class="vl-20"></div>
 
     <!-- New Organization add form -->
     <div class="flex-group">
         <fieldset>
-            <legend>Add New Organization</legend>
+            <legend><u>Add New Organization</u></legend>
             <form action="#" method="post">
                 <label for="org_id" class="form-label">Enter Organization ID:</label>
                 <input type="text" name="org_id" minlength="3" maxlength="3" placeholder="3 letter Organization ID" class="form-input mb-2" required>
@@ -64,6 +67,7 @@
                 </select>
                 <input type="submit" name="add-org" value="Add" class="btn btn-outline-success new-btn-block mt-3">
             </form>
+            <small class="bg-light bg-gradient"> <i class="bi bi-sticky"></i> <a href="location.php">click here</a> to add more locations</small>
         </fieldset>
     </div>
 </div>

@@ -6,12 +6,24 @@
         <div class="form-group">
             <label for="dep-org" class="form-label">Select Organization:</label>
             <select name="dep-org" required>
-                <option hidden disabled selected value> -- select an option -- </option>
             <?php 
+                if (!isset($_GET['org'])) {
+                    echo "<option hidden disabled selected value> -- select an option -- </option>";
+                }
                 $query = "SELECT org_id AS id, org_name AS name FROM Organization ORDER BY 1";
                 $res = mysqli_query($conn, $query);
                 foreach ($res as $org) { ?>
-                    <option value=<?php echo $org['id']; ?>><?php echo $org['name']; ?></option>
+                    <?php
+                        if (isset($_GET['org']) && $org['id']==$_GET['org']) {
+                            ?>
+                            <option value=<?php echo $org['id']; ?> selected><?php echo $org['name']; ?></option>
+                            <?php
+                        } else {
+                            ?>
+                            <option value=<?php echo $org['id']; ?>><?php echo $org['name']; ?></option>
+                            <?php
+                        }
+                    ?>
                 <?php }
             ?>
             </select>
@@ -46,12 +58,12 @@
                 <span>
                     <?php echo "New Department with ID <strong>$dep_id</strong> Added Successfully..."; ?>
                 </span>
-                <a href="branch.php" class="btn btn-info">Go to Department Records</a>
+                <a href="branch.php?org=<?php echo $_GET['org']; ?>" class="btn btn-sm btn-outline-info">Go to Department Records</a>
             </div>
         <?php } else { ?>
             <div class="alert alert-danger flexbox mt-3">
                 <?php echo "Something went wrong... Try Again..."; ?>
-                <a href="branch.php" class="btn btn-info">Go to Department Records</a>
+                <a href="branch.php?org=<?php echo $_GET['org']; ?>" class="btn btn-sm btn-outline-info">Go to Department Records</a>
             </div>
         <?php } 
     }

@@ -52,11 +52,12 @@
     if (isset($_POST["submit"])) {
         $query = "DELETE FROM Branch WHERE branch_id = '$id'";
         if (mysqli_query($conn, $query)) { 
-            header("Location:branch.php");
+            $org = $_GET['org'];
+            header("Location:branch.php?org=$org");
         } else { ?>
             <div class="alert alert-danger flexbox mt-3">
                 <?php echo "Something went wrong... Try Again..."; ?>
-                <a href="branch.php" class="btn btn-info">Go Back to Branch Records</a>
+                <a href="branch.php?org=<?php echo $org; ?>" class="btn btn-info">Go Back to Branch Records</a>
             </div>
         <?php }
     }

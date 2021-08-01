@@ -1,15 +1,18 @@
 <?php include "header.php" ?>
 
-<div class="flexbox">
-    <h4 class="new-title new-title-basic-underline">Departments</h4>
-    <a href="add_branch.php" class="new-btn btn btn-sm">Add New Department</a>
-</div>
-
 <?php
-    $query = "SELECT * FROM Branch ORDER BY 1";
+    $query = "SELECT * FROM Branch";
+    if (isset($_GET['org'])) {
+        $org_id = $_GET['org'];
+        $query .= " WHERE SUBSTRING(branch_id, 1, 3) = '$org_id'";
+    }
     $res = mysqli_query($conn, $query);
 ?>
 
+<div class="flexbox">
+    <h4 class="new-title new-title-basic-underline">Departments</h4>
+    <a href="add_branch.php?org=<?php echo $org_id; ?>" class="new-btn btn btn-sm">Add New Department</a>
+</div>
 
 <table class="table table-bordered table-light table-hover mt-3">
     <tbody>
@@ -31,7 +34,7 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="remove_branch.php?id=<?php echo $branch['branch_id']; ?>" class="btn btn-outline-danger btn-sm">
+                        <a href="remove_branch.php?id=<?php echo $branch['branch_id']; ?>&org=<?php echo $org_id; ?>" class="btn btn-outline-danger btn-sm">
                             <i class="bi bi-trash">Remove</i>
                         </a>
                     </td>

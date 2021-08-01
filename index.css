@@ -176,7 +176,7 @@ ul {
 .new-container {
 	margin: auto;
 	margin-top: 5rem;
-	width: min(90%, 80rem);
+	width: min(90%, 65rem);
 	background-color: var(--white);
 	box-shadow: var(--shadow-3);
 	padding: 2rem;
@@ -253,22 +253,6 @@ select:focus {
 	margin-right: 2rem;
 }
 
-/* alerts */
-/* .alert {
-	padding: 0.375rem 0.75rem;
-	margin-bottom: 1rem;
-	border-color: transparent;
-	border-radius: var(--borderRadius);
-}
-.alert-danger {
-	color: var(--red-dark);
-	background: var(--red-light);
-}
-.alert-success {
-	color: var(--green-dark);
-	background: var(--green-light);
-} */
-
 /* location */
 .loc-list {
 	height: 8rem;
@@ -294,7 +278,7 @@ select:focus {
 	height: 8rem;
 	border: 1px solid grey;
 }
-.vl-18 {
-	height: 18rem;
+.vl-20 {
+	height: 20rem;
 	border: 1px solid grey;
 }

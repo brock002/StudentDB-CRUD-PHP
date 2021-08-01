@@ -38,11 +38,12 @@
 
         $query = "UPDATE Student SET name = '$name', email = '$email', phone = '$phone' WHERE roll_no = '$roll'";
         if (mysqli_query($conn, $query)) { 
-            header("Location:student.php");
+            $br = $_GET['branch'];
+            header("Location:student.php?branch=$br");
         } else { ?>
             <div class="alert alert-danger flexbox mt-3">
                 <?php echo "Something went wrong... Try Again..."; ?>
-                <a href="student.php" class="btn btn-info">Go Back to Student Records</a>
+                <a href="student.php?branch=<?php echo $_GET['branch'] ?>" class="btn btn-info">Go Back to Student Records</a>
             </div>
         <?php }
     }

@@ -34,7 +34,7 @@
         <input type="submit" name="tpr" value="Submit" class="btn new-btn ms-3">
     </div>
 </form>
-<a href="student.php" class="btn btn-sm btn-outline-info">Go to Students List</a>
+<a href="student.php?branch=<?php echo $_GET['branch']; ?>" class="btn btn-sm btn-outline-info">Go to Students List</a>
 <?php
     if (isset($_POST['tpr'])) {
         $tpr = $_POST['tpr'];
@@ -44,7 +44,8 @@
             $query = "UPDATE Student SET tpr = '$tpr' WHERE roll_no = '$roll'";
         }
         if (mysqli_query($conn, $query)) {
-            header("Location:student.php");
+            $br = $_GET['branch'];
+            header("Location:student.php?branch=$br");
         } else {
             echo "<h2>ERROR!!!</h2>";
         }

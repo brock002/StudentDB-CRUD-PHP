@@ -1,6 +1,12 @@
 <?php include "header.php" ?>
 
-<div class="flexbox-center">
+<!-- showing organizations in home page -->
+<?php
+    header("Location:organization.php");
+?>
+
+<!-- showing a list of all tables -->
+<!-- <div class="flexbox-center">
     <ul>
         <li>
             <h5>
@@ -27,6 +33,6 @@
             </h5>
         </li>
     </ul>
-</div>
+</div> -->
 
 <?php include "footer.php" ?>

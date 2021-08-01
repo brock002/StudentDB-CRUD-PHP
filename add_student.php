@@ -39,13 +39,18 @@
         <div class="form-group">
             <label for="branch" class="form-label">Select Branch:</label>
             <select name="branch" required>
-                <option hidden disabled selected value> -- select an option -- </option>
                 <?php
+                    if (!isset($_GET['branch'])) {
+                        echo "<option hidden disabled selected value> -- select an option -- </option>";
+                    }
                     $query = "SELECT * FROM Branch";
                     $res = mysqli_query($conn, $query);
                     foreach ($res as $branch) {
                 ?>
-                <option value="<?php echo $branch['branch_id'] ?>">
+                <option 
+                    value="<?php echo $branch['branch_id'] ?>"
+                    <?php echo isset($_GET['branch'])&&$_GET['branch']==$branch['branch_id'] ? "selected" : "" ?> 
+                >
                     <?php echo $branch['branch_id']." (".ucwords(strtolower($branch['name'])).")" ?>
                 </option>
                 <?php } ?>
@@ -75,7 +80,7 @@
             // creating the student_id
             $query = "SELECT roll_no FROM Student 
                         WHERE SUBSTRING(roll_no, 1, 6)='$branch' 
-                        AND SUBSTRING(roll_no, 7, 10)='$admission_year' 
+                        AND SUBSTRING(roll_no, 7, 4)='$admission_year' 
                         ORDER BY 1 DESC LIMIT 1";
             $res = mysqli_query($conn, $query);
             if (mysqli_num_rows($res)==0) {
@@ -95,14 +100,14 @@
                         New Student with <strong>Roll No: <?php echo $student_id;?></strong> Added Successfully
                     </h6>
                     <span>
-                        <a href="student.php" class="btn btn-sm btn-outline-info">Go to Student Records</a>
+                        <a href="student.php?branch=<?php echo $_GET['branch']; ?>" class="btn btn-sm btn-outline-info">Go to Student Records</a>
                         <a href="add_student_tpr.php?roll=<?php echo $student_id; ?>" class="btn btn-sm btn-outline-info">Select TPR</a>
                     </span>
                 </div>
                 <?php } else { ?>
                 <div class="alert alert-danger flexbox mt-3">
                     <?php echo "Something went wrong... Try Again..."; ?>
-                    <a href="student.php" class="btn btn-info">Go to Student Records</a>
+                    <a href="student.php?branch=<?php echo $_GET['branch']; ?>" class="btn btn-sm btn-outline-info">Go to Student Records</a>
                 </div>
             <?php } 
         }

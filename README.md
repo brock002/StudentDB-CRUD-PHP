@@ -10,10 +10,10 @@
 
 ### Tables in the database:
 
-- Student
-- Branch
-- Organization
-- Location
+- Student (roll_no, name, admission_year, dob, email, phone, tpr)
+- Branch (branch_id, name)
+- Organization (org_id, org_name, location)
+- Location (loc_id, loc_name)
 
 <br/>
 
